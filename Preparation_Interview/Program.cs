@@ -83,6 +83,8 @@ namespace Preparation_Interview
 
         public static bool CheckAngram(string input1, string input2)
         {
+            var temp = "Hello world";
+          var arr =  temp.Split(" ");
             if(input1.Length != input2.Length) return false;
           char[] CharArrInput1 =  input1.ToLower().ToCharArray();
           char[] CharArrInput2 = input2.ToLower().ToCharArray();
@@ -203,12 +205,11 @@ namespace Preparation_Interview
 
         //Arrange the elments of an int array such that odd and even numbers appear alternatively in an increasing order 
 
-        public static void RearrangeArrayElts(int[] arr)
+        public static int[] RearrangeArrayElts(int[] arr)
         {
             List<int> Oddlist = new List<int>();
             List<int> Evenlist = new List<int>();
             Array.Sort(arr);
-
             for (int j = 0;j < arr.Length; j++)
             {
                 if (arr[j] % 2 == 0)
@@ -246,8 +247,7 @@ namespace Preparation_Interview
                     flag = !flag;
                 }
             }
-            for (i = 0; i < n; i++)
-                Console.WriteLine(arr[i]);
+            return arr;
 
         }
         
@@ -280,7 +280,59 @@ namespace Preparation_Interview
             return Result.ToString().Trim().Remove(Result.Length-1);
         }
 
+        //public static string Solution(string str)
+        //{
+        //    string output = "";
+        //    int count = 1;
+        //    char prev = str[0];
+        //    for(int i =1; i<str.Length; i++)
+        //    {
+        //        if(str[i] == prev)
+        //        {
+        //            count++;
+        //            output += count.ToString() + prev.ToString();
 
+        //        }
+        //        else
+        //        {
+        //            prev = str[i];
+        //            count = 1;
+
+
+        //        }
+        //    }
+        //    return output ;
+        //}
+
+        // Battle between good and evil ====> Kata 6
+        public static string GoodVsEvil(string good, string evil)
+        {
+            var evilarr = evil.Split(" ");
+            var goodArr = good.Split(" ");
+            int evilSum = 0;
+            int goodSum = 0;
+
+            for (int i = 0; i < evilarr.Length; i++)
+            {
+                evilSum += Convert.ToInt32(evilarr[i]);
+            }
+            for (int k = 0; k < goodArr.Length; k++)
+            {
+                goodSum += Convert.ToInt32(goodArr[k]);
+            }
+            if (evilSum > goodSum)
+            {
+                return "Battle Result: Evil eradicates all trace of Good";
+            }
+            else if (goodSum > evilSum)
+            {
+                return "Battle Result: Good triumphs over Evil";
+            }
+            else
+            {
+                return "Battle Result: No victor on this battle field";
+            }
+        }
         static void Main(string[] args)
         {
             Console.WriteLine(ReverseWord("Hello"));
@@ -299,8 +351,9 @@ namespace Preparation_Interview
             Console.WriteLine("=======Prime======");
             Console.WriteLine(CheckPrimeNumber(1));
             Console.WriteLine("====String of prime=====");
-            int[] nums = { 3, 6, 7, 9, 23, 17 };
+            int[] nums = { 2, 3, 4, 6, 11, 15, 17 };
             Console.WriteLine(PrimeNumber_String(nums));
+            Console.WriteLine(Solution("aabbbacc"));
 
 
         }
