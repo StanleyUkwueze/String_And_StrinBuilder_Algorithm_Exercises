@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace Preparation_Interview
 {
@@ -280,59 +281,38 @@ namespace Preparation_Interview
             return Result.ToString().Trim().Remove(Result.Length-1);
         }
 
-        //public static string Solution(string str)
-        //{
-        //    string output = "";
-        //    int count = 1;
-        //    char prev = str[0];
-        //    for(int i =1; i<str.Length; i++)
-        //    {
-        //        if(str[i] == prev)
-        //        {
-        //            count++;
-        //            output += count.ToString() + prev.ToString();
-
-        //        }
-        //        else
-        //        {
-        //            prev = str[i];
-        //            count = 1;
-
-
-        //        }
-        //    }
-        //    return output ;
-        //}
-
-        // Battle between good and evil ====> Kata 6
-        public static string GoodVsEvil(string good, string evil)
+        public static string Solution(string str)
         {
-            var evilarr = evil.Split(" ");
-            var goodArr = good.Split(" ");
-            int evilSum = 0;
-            int goodSum = 0;
-
-            for (int i = 0; i < evilarr.Length; i++)
+            string output = "";
+            int count = 1;
+            char prev = str[0];
+            for (int i = 1; i < str.Length; i++)
             {
-                evilSum += Convert.ToInt32(evilarr[i]);
+                if (str[i] == prev)
+                {
+                    count++;
+                    output += count.ToString() + prev.ToString();
+                }
+                else
+                {
+                    prev = str[i];
+                    count = 1;                   
+                }
             }
-            for (int k = 0; k < goodArr.Length; k++)
-            {
-                goodSum += Convert.ToInt32(goodArr[k]);
-            }
-            if (evilSum > goodSum)
-            {
-                return "Battle Result: Evil eradicates all trace of Good";
-            }
-            else if (goodSum > evilSum)
-            {
-                return "Battle Result: Good triumphs over Evil";
-            }
-            else
-            {
-                return "Battle Result: No victor on this battle field";
-            }
+            return output;
         }
+
+        //Factorial Number
+        public static int FactorialNumber(int num)
+        {
+            int factorial = 1;
+            for (int i = 1; i <= num; i++)
+            {
+                factorial *= i;
+            }
+            return factorial;
+        }
+
         static void Main(string[] args)
         {
             Console.WriteLine(ReverseWord("Hello"));
@@ -346,16 +326,26 @@ namespace Preparation_Interview
             Console.WriteLine(MaxOccurrence("werertuwE"));
 
             Console.WriteLine("======Alternate Arrangement=======");
-            int[] arr = { 9, 8, 13, 2, 19, 14 };         
+            int[] arr = { 9, 8, 13, 2, 19, 14 }; 
+            List<int> list = new List<int> { 9, 8, 13, 2, 19, 2, 14 };
+
+            Console.WriteLine("====Minimum value====");
+            list.Remove(list.Min());
+            foreach(int i in list) Console.WriteLine(i);
+
             RearrangeArrayElts(arr);
             Console.WriteLine("=======Prime======");
             Console.WriteLine(CheckPrimeNumber(1));
             Console.WriteLine("====String of prime=====");
             int[] nums = { 2, 3, 4, 6, 11, 15, 17 };
             Console.WriteLine(PrimeNumber_String(nums));
+
+
             Console.WriteLine(Solution("aabbbacc"));
+            Console.WriteLine("======Factorial=======");
+            Console.WriteLine(FactorialNumber(5));
 
-
+            //https://youtu.be/-IzpsC-0eBk
         }
     }
 }
