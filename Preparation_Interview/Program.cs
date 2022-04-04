@@ -313,8 +313,177 @@ namespace Preparation_Interview
             return factorial;
         }
 
+        //Left Rotation of an Array
+        public static void RotateLeft(int[] arr)
+        {
+            int temp = arr[0];
+            for(int i = 1; i<arr.Length-1; i++)
+            {
+                arr[i-1] = arr[i];
+            }
+            arr[(arr.Length - 1)] = temp;
+
+            for(int i = 0; i < arr.Length; i++) Console.WriteLine(arr[i]);    
+        }
+
+        //return a list of anagrams
+
+        private static bool checkanagram(string str, string str1)
+        {
+            if (str.Length != str1.Length)
+            {
+                return false;
+            }
+            str = str.ToLower().Trim();
+            str1 = str1.ToLower().Trim();
+
+            char[] arr1 = str.ToCharArray();
+            char[] arr2 = str1.ToCharArray();
+             
+            Array.Sort(arr1);
+            Array.Sort(arr2);
+
+            for (int i = 0; i < arr1.Length; i++)
+            {
+                if (arr1[i] != arr2[i])
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public static List<string> Anagrams(string word, List<string> words)
+        {
+            List<string> list = new List<string>();
+
+            for (int i = 0; i < words.Count; i++)
+            {
+                if (checkanagram(word, words[i]))
+                {
+                    list.Add(words[i]);
+                }
+            }
+            return list;
+        }
+
+        //Hankerrank
+
+       public static int getMoneySpent(int[] keyboards, int[] drives, int b)
+        {
+            /*
+             * Write your code here.
+
+             */
+            List<int> results = new List<int>();
+            int sum = 0;
+            for (int i = 0; i < keyboards.Length; i++)
+            {
+                for (int k = 0; k < drives.Length; k++)
+                {
+                    sum = keyboards[i] + drives[k];
+                    if (sum < b) results.Add(sum);
+                }
+            }
+            if (results.Count < 1) return -1;
+            else
+            {
+                results.Sort();
+                return results[results.Count - 1];
+            }
+           
+        }
+
+        //sockMerchant
+
+        public static int sockMerchant(int n, List<int> ar)
+        {
+            Dictionary<int, int> con = new Dictionary<int, int>();
+            int sum = 0;
+            for (int i = 0; i < n; i++)
+            {
+                if (!con.ContainsKey(ar[i]))
+                {
+                    con.Add((ar[i]), 1);
+                }
+                else
+                {
+                    con[ar[i]]++;
+                }
+            }
+
+            foreach (KeyValuePair<int, int> num in con)
+            {
+                if (num.Value >= 2)
+                {
+                    sum += (int)(num.Value / 2);
+                }
+            }
+            return sum;
+        }
+
+
+        public static int Get(List<List<int>> times)
+        {
+            int count = 0;
+            Dictionary<int, List<int>> store = new Dictionary<int, List<int>>();
+            int min = times.Select(x => x[0]).Min();
+            int max = times.Select(x => x[0]).Max();
+            foreach(var time in times)
+            {
+                if(store.ContainsKey(time[0]))
+                {
+                    store[time[0]].Add(time[1]);
+                } else
+                {
+                    store.Add(time[0], new List<int>() { time[1] });
+                }
+            }
+            //Console.WriteLine(min);
+            //Console.WriteLine(max);
+            while(store.Count > 0)
+            {
+                for(int m = min; m <= max; m++)
+                {
+                    //Console.WriteLine(m);
+                    if(store.ContainsKey(m))
+                    {
+                        int val = store[m][0];
+                        store[m].RemoveAt(0);
+                        if (store[m].Count == 0) store.Remove(m);
+                        m = val - 1;
+                        
+                    }
+                }
+                count++;
+            }
+            return count;
+        }
+
         static void Main(string[] args)
         {
+            //List<List<int>> array = new List<List<int>>();
+
+            //[[1,5],[5,6],[6,7],[7,9]]
+            // [[0,2],[1,4],[4,6],[0,4],[7,8],[9,11],[3,10]]
+            //array.Add(new List<int>() { 0, 2 });
+            //array.Add(new List<int>() { 1, 4 });
+            //array.Add(new List<int>() { 4, 6 });
+            //array.Add(new List<int>() { 0, 4 });
+            //array.Add(new List<int>() { 7, 8 });
+            //array.Add(new List<int>() { 9, 11 });
+            //array.Add(new List<int>() { 3, 10 });
+            //Console.WriteLine(Get(array));
+
+            //page count 
+
+            int n = Convert.ToInt32(Console.ReadLine());
+            int p = Convert.ToInt32(Console.ReadLine());
+            int result = CodeWars.solve(n, p);
+            Console.WriteLine(result);
+
+            /*
+
             Console.WriteLine(ReverseWord("Hello"));
 
             Console.WriteLine(ReverseEachWord("hello world we are going to london"));
@@ -344,8 +513,17 @@ namespace Preparation_Interview
             Console.WriteLine(Solution("aabbbacc"));
             Console.WriteLine("======Factorial=======");
             Console.WriteLine(FactorialNumber(5));
+            RotateLeft(list.ToArray());
 
+            Console.WriteLine("========GetMoney======");
+            int[] keyboards = { 10, 20, 20, 10, 10, 30, 50, 10, 20 };
+            int[] drives = { 4 };
+            int b = 5;
+            Console.WriteLine(getMoneySpent(keyboards, drives, b));
+
+            Console.WriteLine(sockMerchant(9,keyboards.ToList()));
             //https://youtu.be/-IzpsC-0eBk
+            */
         }
     }
 }
