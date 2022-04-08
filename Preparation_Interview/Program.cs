@@ -5,14 +5,14 @@ using System.Linq;
 
 namespace Preparation_Interview
 {
-  public class Program
+    public class Program
     {
         //Reverse the characters of a word
         public static string ReverseWord(string str)
         {
-            string result = "";          
+            string result = "";
             int n = str.Length - 1;
-            for(int i = n; i >= 0; i--)
+            for (int i = n; i >= 0; i--)
             {
                 result += str[i].ToString();
             }
@@ -25,12 +25,12 @@ namespace Preparation_Interview
         {
             if (str.Length < 1) return string.Empty;
             string result = "";
-           var arr = str.Trim().Split(" "); 
-            for(int i = 0; i < arr.Length; i++)
+            var arr = str.Trim().Split(" ");
+            for (int i = 0; i < arr.Length; i++)
             {
-              
+
                 result += ReverseWord(arr[i]) + " ";
-               
+
             }
 
             return result.Trim();
@@ -48,21 +48,21 @@ namespace Preparation_Interview
 
             Stack<char> CharStack = new Stack<char>();
 
-            for(int i = 0; i < str.Length; i++)
+            for (int i = 0; i < str.Length; i++)
             {
-                if(str[i] != ' ')
+                if (str[i] != ' ')
                 {
                     CharStack.Push(str[i]);
                 }
 
                 else
                 {
-                    while(CharStack.Count > 0)
+                    while (CharStack.Count > 0)
                     {
                         char c = CharStack.Pop();
-                        result.Append(c.ToString()) ;
+                        result.Append(c.ToString());
                         newsentence = result;
-                      
+
                     }
                     res += newsentence.ToString() + " ";
                     result = new StringBuilder();
@@ -84,20 +84,18 @@ namespace Preparation_Interview
 
         public static bool CheckAngram(string input1, string input2)
         {
-            var temp = "Hello world";
-          var arr =  temp.Split(" ");
-            if(input1.Length != input2.Length) return false;
-          char[] CharArrInput1 =  input1.ToLower().ToCharArray();
-          char[] CharArrInput2 = input2.ToLower().ToCharArray();
+            if (input1.Length != input2.Length) return false;
+            char[] CharArrInput1 = input1.ToLower().ToCharArray();
+            char[] CharArrInput2 = input2.ToLower().ToCharArray();
             Array.Sort(CharArrInput1);
             Array.Sort(CharArrInput2);
-            for (int i = 0;i < CharArrInput1.Length; i++)
+            for (int i = 0; i < CharArrInput1.Length; i++)
             {
-                if(CharArrInput1[i] != CharArrInput2[i])
+                if (CharArrInput1[i] != CharArrInput2[i])
                 {
                     return false;
                 }
-             
+
             }
             return true;
         }
@@ -105,14 +103,14 @@ namespace Preparation_Interview
         //Check if a word is a palidrome...
         public static bool CheckPalidrome(string word)
         {
-            if(string.IsNullOrEmpty(word)) return false;
-           string newword =  word.ToLower().Trim();
-             int max = word.Length - 1;
-             int min = 0;
+            if (string.IsNullOrEmpty(word)) return false;
+            string newword = word.ToLower().Trim();
+            int max = word.Length - 1;
+            int min = 0;
             int lent = newword.Length;
-            for(int i = 0; i < lent; i++)
+            for (int i = 0; i < lent; i++)
             {
-                if(newword[min] != newword[max])
+                if (newword[min] != newword[max])
                 {
                     return false;
                 }
@@ -128,11 +126,11 @@ namespace Preparation_Interview
         {
             int count = 0;
             var arr = sentence.Split(" ");
-            for(int i = 0; i < arr.Length; i++)
+            for (int i = 0; i < arr.Length; i++)
             {
-                if (CheckPalidrome(arr[i])) 
-                { 
-                    count++; 
+                if (CheckPalidrome(arr[i]))
+                {
+                    count++;
                 }
             }
             return count;
@@ -142,12 +140,12 @@ namespace Preparation_Interview
         public static int CountPalidromeWithoutSplitting(string sentence)
         {
             StringBuilder stringBuilder = new StringBuilder();
-           
+
             int count1 = 0;
             int count2 = 0;
-            for(int i = 0; i < sentence.Length; i++)
+            for (int i = 0; i < sentence.Length; i++)
             {
-               if(sentence[i] != ' ')
+                if (sentence[i] != ' ')
                 {
                     stringBuilder.Append(sentence[i]);
                 }
@@ -166,7 +164,7 @@ namespace Preparation_Interview
                 count2++;
             }
             return count1 + count2;
-          
+
         }
 
         //Get the maximum occured character in a word
@@ -193,9 +191,9 @@ namespace Preparation_Interview
                 }
             }
 
-            foreach(KeyValuePair<char,int> c in occurrenceDictionary)
+            foreach (KeyValuePair<char, int> c in occurrenceDictionary)
             {
-                if(c.Value > maxOccuredValue)
+                if (c.Value > maxOccuredValue)
                 {
                     maxOccuredValue = c.Value;
                     maxOccurredChar = c.Key;
@@ -211,7 +209,7 @@ namespace Preparation_Interview
             List<int> Oddlist = new List<int>();
             List<int> Evenlist = new List<int>();
             Array.Sort(arr);
-            for (int j = 0;j < arr.Length; j++)
+            for (int j = 0; j < arr.Length; j++)
             {
                 if (arr[j] % 2 == 0)
                     Evenlist.Add(arr[j]);
@@ -220,19 +218,19 @@ namespace Preparation_Interview
                     Oddlist.Add(arr[j]);
                 }
             }
-            
+
             int index = 0;
             int i = 0;
             int k = 0;
             int n = arr.Length;
             bool flag = false;
 
-            if(arr[0] %2 == 0) 
+            if (arr[0] % 2 == 0)
                 flag = true;
 
-            while(index < n)
+            while (index < n)
             {
-                if(flag == true)
+                if (flag == true)
                 {
                     arr[index] = Evenlist[i];
                     index++;
@@ -251,18 +249,18 @@ namespace Preparation_Interview
             return arr;
 
         }
-        
+
         //check if a number is a prime number
         public static bool CheckPrimeNumber(int num)
         {
-          if(num == 2) return true;
-          if(num <= 1) return false;
-          
-            for(int i = 2; i < num; i++)
+            if (num == 2) return true;
+            if (num <= 1) return false;
+
+            for (int i = 2; i < num; i++)
             {
-             if(num % i == 0) 
+                if (num % i == 0)
                     return false;
-            
+
             }
             return true;
         }
@@ -271,14 +269,14 @@ namespace Preparation_Interview
         public static string PrimeNumber_String(int[] num)
         {
             StringBuilder Result = new StringBuilder();
-            for(int i = 0; i < num.Length; i++)
+            for (int i = 0; i < num.Length; i++)
             {
                 if (CheckPrimeNumber(num[i]))
                 {
-                    Result.Append(num[i] + ",") ;
+                    Result.Append(num[i] + ",");
                 }
             }
-            return Result.ToString().Trim().Remove(Result.Length-1);
+            return Result.ToString().Trim().Remove(Result.Length - 1);
         }
 
         public static string Solution(string str)
@@ -291,14 +289,19 @@ namespace Preparation_Interview
                 if (str[i] == prev)
                 {
                     count++;
-                    output += count.ToString() + prev.ToString();
+
+                   
+                    prev = str[i];
+
                 }
                 else
                 {
+                    output += $"{count}{prev}";
                     prev = str[i];
-                    count = 1;                   
+                    count = 1;
                 }
             }
+            output += $"{count}{prev}";
             return output;
         }
 
@@ -317,13 +320,13 @@ namespace Preparation_Interview
         public static void RotateLeft(int[] arr)
         {
             int temp = arr[0];
-            for(int i = 1; i<arr.Length-1; i++)
+            for (int i = 1; i < arr.Length - 1; i++)
             {
-                arr[i-1] = arr[i];
+                arr[i - 1] = arr[i];
             }
             arr[(arr.Length - 1)] = temp;
 
-            for(int i = 0; i < arr.Length; i++) Console.WriteLine(arr[i]);    
+            for (int i = 0; i < arr.Length; i++) Console.WriteLine(arr[i]);
         }
 
         //return a list of anagrams
@@ -339,7 +342,7 @@ namespace Preparation_Interview
 
             char[] arr1 = str.ToCharArray();
             char[] arr2 = str1.ToCharArray();
-             
+
             Array.Sort(arr1);
             Array.Sort(arr2);
 
@@ -369,7 +372,7 @@ namespace Preparation_Interview
 
         //Hankerrank
 
-       public static int getMoneySpent(int[] keyboards, int[] drives, int b)
+        public static int getMoneySpent(int[] keyboards, int[] drives, int b)
         {
             /*
              * Write your code here.
@@ -391,7 +394,7 @@ namespace Preparation_Interview
                 results.Sort();
                 return results[results.Count - 1];
             }
-           
+
         }
 
         //sockMerchant
@@ -422,65 +425,224 @@ namespace Preparation_Interview
             return sum;
         }
 
-
-        public static int Get(List<List<int>> times)
+        public static int[][] Pyramid(int n)
         {
-            int count = 0;
-            Dictionary<int, List<int>> store = new Dictionary<int, List<int>>();
-            int min = times.Select(x => x[0]).Min();
-            int max = times.Select(x => x[0]).Max();
-            foreach(var time in times)
+            // your code here
+            if (n == 0)
             {
-                if(store.ContainsKey(time[0]))
-                {
-                    store[time[0]].Add(time[1]);
-                } else
-                {
-                    store.Add(time[0], new List<int>() { time[1] });
-                }
+                return new int[0][];
             }
-            //Console.WriteLine(min);
-            //Console.WriteLine(max);
-            while(store.Count > 0)
+            var list = new List<List<int>>();
+            var list2 = new List<int>();
+            // list.Add(list2);
+            for (int i = 0; i < n; i++)
             {
-                for(int m = min; m <= max; m++)
+
+                for (int j = i; j >= 0; j--)
                 {
-                    //Console.WriteLine(m);
-                    if(store.ContainsKey(m))
-                    {
-                        int val = store[m][0];
-                        store[m].RemoveAt(0);
-                        if (store[m].Count == 0) store.Remove(m);
-                        m = val - 1;
-                        
-                    }
+                    list2.Add(1);
                 }
-                count++;
+                list.Add(list2);
             }
-            return count;
+            return list.Select(l => l.ToArray()).ToArray();
+
         }
 
-        static void Main(string[] args)
+        //Coderbyte ======>>> find Intersection
+        public static string FindIntersection(string[] strArr)
         {
-            //List<List<int>> array = new List<List<int>>();
 
-            //[[1,5],[5,6],[6,7],[7,9]]
-            // [[0,2],[1,4],[4,6],[0,4],[7,8],[9,11],[3,10]]
-            //array.Add(new List<int>() { 0, 2 });
-            //array.Add(new List<int>() { 1, 4 });
-            //array.Add(new List<int>() { 4, 6 });
-            //array.Add(new List<int>() { 0, 4 });
-            //array.Add(new List<int>() { 7, 8 });
-            //array.Add(new List<int>() { 9, 11 });
-            //array.Add(new List<int>() { 3, 10 });
-            //Console.WriteLine(Get(array));
+            // code goes here  
+            var arr1 = strArr[0].Split(", ");
+            var arr2 = strArr[1].Split(", ");
+            var list = "";
+            for (int i = 0; i < arr1.Length; i++)
+            {
+                if (arr2.Contains(arr1[i]))
+                {
+                    list += arr1[i] + ",";
+                    //Console.WriteLine(arr1[i]);
+                }
+            }
+            if (list.Length > 0)
+            {
+                return list.Remove(list.Length - 1, 1);
+            }
+            else
+            {
+                return "false";
+            }
 
+        }
+
+        //Longest word
+
+
+        public static string charcount(string str)
+        {
+            //aabbbaccc
+            //output ===> 2a3b1a3c
+            int count = 1;
+            var prev = str[0];
+
+            var output = "";
+            for (int i = 1; i < str.Length; i++)
+            {
+                if (str[i] == prev)
+                {
+                    count++;
+                    prev = str[i];
+                }
+                else
+                {
+                    output += $"{count}{prev}";
+                    count = 1;
+                    prev = str[i];
+                }
+            }
+            output += $"{count}{prev}";
+            return output;
+        }
+
+        //Bracket Matcher
+
+
+
+        public static string BracketMatcher(string str)
+        {
+            // code goes here  
+            int open = 0;
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (str[i] == '(') open++;
+                if (str[i] == ')')
+                {
+                    if (open > 0)
+                    {
+                        open--;
+                    }
+                    else
+                    {
+                        return "0";
+                    }
+                }
+            }
+
+            return open < 1 ? "1" : "0";
+        }
+
+        //Qouestion Marks
+
+        public static string QuestionsMarks(string str)
+        {
+            // code goes here 
+            int count = 0;
+            var output = "false";
+            for (int i = 0; i < str.Length; i++)
+            {
+                for (int j = i + 1; j < str.Length; j++)
+                {
+                    int a = Convert.ToInt32(str[i]-'0');
+                    int b = Convert.ToInt32(str[j] - '0');
+                    if (a + b == 10)
+                    {
+                        output = "true";
+                        count = 0;
+
+                        var str1 = str.Substring(i, str.Length - j);
+                        for (int k = 0; k < str1.Length; k++)
+                        {
+                            if (str1[k] == '?')
+                            {
+                                count++;
+                            }
+                        }
+                        if (count >= 3)
+                        {
+                            return output;
+                        }
+                    }
+                }
+            }
+
+            return output;
+        }
+        
+        //Time Conversion
+        public static string print24(String str)
+        {
+            // Get hours
+            int h1 = (int)str[1] - '0';
+            int h2 = (int)str[0] - '0';
+            int hh = (h2 * 10 + h1 % 10);
+            var output = "";
+            // If time is in "AM"
+            if (str[8] == 'A')
+            {
+                if (hh == 12)
+                {
+                    output += "00";
+                    for (int i = 2; i <= 7; i++)
+                        output += str[i];
+                }
+                else
+                {
+                    for (int i = 0; i <= 7; i++)
+                        output +=  str[i];
+                }
+            }
+
+            // If time is in "PM"
+            else
+            {
+                if (hh == 12)
+                {
+                    output += 12;
+                    for (int i = 2; i <= 7; i++)
+                        output +=  str[i];
+                }
+                else
+                {
+                    hh = hh + 12;
+                    output += hh;
+                    for (int i = 2; i <= 7; i++)
+                        output += str[i];
+                }
+            }
+            return output;
+        }
+            static void Main(string[] args)
+            {
+            string[] res = { "ahffaksfajeeubsne", "jefaa" };
+            Console.WriteLine(CoderByte.MinWindowSubstring(res));
+           
+            //var str = "I Love Code";
+            //Console.WriteLine(CodeWars.FirstReverse(str));
+            //Console.WriteLine(CodeWars.reverseWord(str));
+            //Console.WriteLine(CodeWars.combineString("aabbbaccc"));
+            //Console.WriteLine(CodeWars.print12To24(str));
+           // Console.WriteLine(print24(str)); 
+            //var str = "?fun&!! time";
+            //Console.WriteLine(LongestWord(str));
+           // var eg = "!a_a6?9";
+           // Console.WriteLine(QuestionsMarks(eg));
+           
+         
+           // var str = "(hello (world))";
+            //Console.WriteLine(BracketMatcher(str));
+            var str = "aabbbaccc";
+            Console.WriteLine(Solution(str));
+            //var arr = new string[] {"4, 3, 5, 6, 7, 8", "4, 7, 8, 9" };
+            //Console.WriteLine(FindIntersection(arr));
+
+
+            //  Console.WriteLine(Pyramid(3));
             //page count 
 
-            int n = Convert.ToInt32(Console.ReadLine());
-            int p = Convert.ToInt32(Console.ReadLine());
-            int result = CodeWars.solve(n, p);
-            Console.WriteLine(result);
+            //int n = Convert.ToInt32(Console.ReadLine());
+            //int p = Convert.ToInt32(Console.ReadLine());
+            //int result = CodeWars.solve(n, p);
+            //Console.WriteLine(result);
 
             /*
 

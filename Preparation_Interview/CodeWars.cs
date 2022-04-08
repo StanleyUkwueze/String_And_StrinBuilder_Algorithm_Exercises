@@ -8,9 +8,99 @@ namespace Preparation_Interview
 {
     public class CodeWars
     {
-        // Computer problem series #1: Fill the Hard Disk Drive ====> Kata 7
 
-        public static int Save(int[] sizes, int hd)
+  
+        //Time Conversion
+
+        public static string print12To24(String str)
+        {
+            int h2 = (int)str[1]-'0';
+            int h1 = (int)str[0]-'0';
+            int hh = (h1 * 10 + h2 % 10);
+
+            var output = string.Empty;
+
+            if(str[8] == 'A' || str[8] == 'a')
+            {
+                if(hh == 12)
+                {
+                    output += "00";
+                }
+                else
+                {
+                    for(int i = 2; i <=7; i++) output += str[i];                  
+                }
+            }
+            else
+            {
+                if(hh == 12)
+                {                  
+                    output += 12;
+                    for (int i = 2; i <= 7; i++) output += str[i];
+                }
+                else
+                {
+                    hh += 12;
+                    output += "12";
+                    for (int i = 2; i <= 7; i++) output += str[i];
+                }
+           
+            }
+
+            return output;
+        }
+        //input ==> aabbbaccc
+        //output ===> 2a3b1a3c
+        public static string combineString(string str)
+        {
+            var output = "";
+            var prev = str[0];
+            int count = 1;
+
+            for(int i = 1; i<str.Length; i++)
+            {
+                if(str[i] == prev)
+                {
+                    count++;
+                    prev = str[i];
+                }
+                else
+                {
+                    output += $"{count}{prev}";
+                    prev = str[i];
+                    count = 1;
+                }
+            }
+             output += $"{count}{prev}";
+            return output;
+        }
+        //Mark and toys
+
+        public static int maximumToys(List<int> prices, int k)
+        {
+            prices.Sort();
+            int toys = 0;
+            int cost = 0;
+            for (int i = 0; i < prices.Count; i++)
+            {
+                if (cost + prices[i] <= k)
+                {
+                    toys++;
+                    cost += prices[i];
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            return toys;
+        }
+
+    
+    // Computer problem series #1: Fill the Hard Disk Drive ====> Kata 7
+
+    public static int Save(int[] sizes, int hd)
         {
             //Write your code here
             int sum = 0;
