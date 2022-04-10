@@ -288,11 +288,8 @@ namespace Preparation_Interview
             {
                 if (str[i] == prev)
                 {
-                    count++;
-
-                   
+                    count++;                 
                     prev = str[i];
-
                 }
                 else
                 {
@@ -613,11 +610,12 @@ namespace Preparation_Interview
         }
             static void Main(string[] args)
             {
-            string[] res = { "ahffaksfajeeubsne", "jefaa" };
-            Console.WriteLine(CoderByte.MinWindowSubstring(res));
+           // string[] res = { "ahffaksfajeeubsne", "jefaa" };
+            //Console.WriteLine(CoderByte.MinWindowSubstring(res));
            
-            //var str = "I Love Code";
-            //Console.WriteLine(CodeWars.FirstReverse(str));
+            var str = "ahyjakh";
+            Console.WriteLine(CoderByte.MatchingCharacter(str));
+           // Console.WriteLine(CoderByte.FirstReverse(str));
             //Console.WriteLine(CodeWars.reverseWord(str));
             //Console.WriteLine(CodeWars.combineString("aabbbaccc"));
             //Console.WriteLine(CodeWars.print12To24(str));
@@ -630,8 +628,8 @@ namespace Preparation_Interview
          
            // var str = "(hello (world))";
             //Console.WriteLine(BracketMatcher(str));
-            var str = "aabbbaccc";
-            Console.WriteLine(Solution(str));
+            //var str = "aabbbaccc";
+            //Console.WriteLine(Solution(str));
             //var arr = new string[] {"4, 3, 5, 6, 7, 8", "4, 7, 8, 9" };
             //Console.WriteLine(FindIntersection(arr));
 

@@ -10,16 +10,60 @@ namespace Preparation_Interview
    public static class CoderByte
     {
 
-        //Reverse each word
-        private static string reverseWord(string str1)
+        //Matching characters
+        public static string MatchingCharacters(string str)
         {
-            var output = "";
-            for (int i = 0; i < str1.Length; i++)
+            //===============================
+            //mmmeryme
+            Dictionary<char, List<int>> store = new Dictionary<char, List<int>>();
+            int index = 0;
+            foreach(var c in str)
             {
-                output += str1[i];
+                if (store.ContainsKey(c))
+                {
+                    store[c].Add(index); // add value to a given key
+                }
+                else
+                {
+                    store.Add(c, new List<int>() { index });
+                }
+                index++;
             }
-            return output;
+            //===============================
+
+            //create a list containing the lists of min and max indices at which  a character occured
+            var doubled = new List<List<int>>(); 
+            //iterate through the store checkin for values with more than one input
+            foreach(var s in store)
+            {
+                if(s.Value.Count > 1)
+                {
+                    var list = new List<int>()
+                    {
+                        s.Value.Min(),
+                        s.Value.Max()
+                    };
+                    doubled.Add(list);
+                }
+            }
+
+            //=============================
+
+            if (doubled.Count == 0) return "0"; //if no character appeared more than once
+
+            int result = 0;
+            foreach(var d in doubled)
+            {
+                HashSet<char> set = new HashSet<char>();
+                for(int i = d[0] + 1 ; i < d[1]; i++)
+                {
+                    set.Add(str[i]);
+                }
+                result = Math.Max(result, set.Count);
+            }
+            return result.ToString();
         }
+
         public static string FirstReverse(string str)
         {
 
@@ -36,11 +80,11 @@ namespace Preparation_Interview
                 }
                 else
                 {
-                    res.Append(reverseWord(sb.ToString()) + " ");
+                    res.Append(sb.ToString() + " ");
                     sb = new StringBuilder();
                 }
             }
-            res.Append(reverseWord(sb.ToString()));
+            res.Append(sb.ToString().Trim());
             return res.ToString();
 
         }
@@ -121,6 +165,57 @@ namespace Preparation_Interview
             // code goes here  
             return "";
 
+        }
+
+        //Char maching==========
+
+        public static string MatchingCharacter(string str)
+        {
+
+            //stage 1
+            Dictionary<char, List<int>> stor = new Dictionary<char, List<int>>();
+            int index = 0; //to keep track of the index of every character in the string
+            foreach(var c in str)
+            {
+                if (stor.ContainsKey(c))
+                {
+                    stor[c].Add(index);
+                }
+                else
+                {
+                    stor.Add(c, new List<int>() { index });
+                }
+                index++;
+            }
+
+            //Stage 2
+            var doubled = new List<List<int>>();
+            foreach(var s in stor)
+            {
+                if(s.Value.Count > 1)
+                {
+                    var list = new List<int>()
+                    {
+                        s.Value.Min(),
+                        s.Value.Max()
+                    };
+                    doubled.Add(list);
+                }
+            }
+
+            //stage 3
+
+            int result = 0;
+            foreach(var d in doubled)
+            {
+                HashSet<int> set = new HashSet<int>();
+                for(int i = d[0] + 1; i < d[1]; i++)
+                {
+                    set.Add(str[i]);
+                }
+                result = Math.Max(result, set.Count);
+            }
+            return result.ToString();
         }
     }
 }
