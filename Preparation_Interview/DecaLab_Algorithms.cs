@@ -46,7 +46,6 @@ namespace Preparation_Interview
             return count;
         }
 
-
         //week 2
         public static int[] SearchInSortedMatrix(int[][] matrix, int target)
         {
@@ -65,28 +64,6 @@ namespace Preparation_Interview
                 }
             }
             return vals;
-        }
-
-        //Stock Max Profit ====> Hankerrank
-
-        public static long stockmax(List<int> prices)
-        {
-            int n = prices.Count;
-            long profit = 0;
-            int peak = 0;
-            for (int i = n - 1; i >= 0; i--)
-            {
-                if (prices[i] >= peak)
-                {
-                    peak = prices[i];
-                }
-                else
-                {
-                    profit += peak - prices[i];
-                }
-
-            }
-            return profit;
         }
 
         //Giving an array and a size, split the array items into a list of arrays of the given size
@@ -136,8 +113,6 @@ namespace Preparation_Interview
             }
             return result;
         }
-
-
     }
 
 }

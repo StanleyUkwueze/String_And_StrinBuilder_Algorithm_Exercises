@@ -527,42 +527,7 @@ namespace Preparation_Interview
             return open < 1 ? "1" : "0";
         }
 
-        //Qouestion Marks
-
-        public static string QuestionsMarks(string str)
-        {
-            // code goes here 
-            int count = 0;
-            var output = "false";
-            for (int i = 0; i < str.Length; i++)
-            {
-                for (int j = i + 1; j < str.Length; j++)
-                {
-                    int a = Convert.ToInt32(str[i]-'0');
-                    int b = Convert.ToInt32(str[j] - '0');
-                    if (a + b == 10)
-                    {
-                        output = "true";
-                        count = 0;
-
-                        var str1 = str.Substring(i, str.Length - j);
-                        for (int k = 0; k < str1.Length; k++)
-                        {
-                            if (str1[k] == '?')
-                            {
-                                count++;
-                            }
-                        }
-                        if (count >= 3)
-                        {
-                            return output;
-                        }
-                    }
-                }
-            }
-
-            return output;
-        }
+       
         
         //Time Conversion
         public static string print24(String str)
@@ -608,56 +573,18 @@ namespace Preparation_Interview
             return output;
         }
 
-        //public static string angryProfessor(int k, List<int> a)
-        //{
-        //    int negativeCount = 0;
-        //    int positiveCount = 0;
-        //    var output = "";
-        //    for (int i = 0; i < a.Count; i++)
-        //    {
-        //        if (a[i] <= 0) negativeCount++;
-        //        if (a[i] > 0) positiveCount++;
-        //    }
-        //    if (negativeCount >= k) output = "YES";
-        //    else if (positiveCount < k) output ="NO";
+       
 
-        //    return output;
-        //}
-
-        //public static int toys(List<int> w)
-        //{
-        //    int min = w.Min() + 4;
-        //    //int n = w.Count;
-        //    int count = 1;
-        //    var resultToAdd = new List<int>();
-        //    for (int i = 0; i < w.Count; i++)
-        //    {
-        //        if (w[i] <= min && w[i] >= min-4 )
-        //        {
-        //            //min = w[i];
-        //            // w.Remove(w[i]);
-        //            resultToAdd.Add(w[i]);
-                    
-        //        }
-        //        else
-        //        {
-        //            resultToAdd = new List<int>();
-        //            resultToAdd.Add(w[i]);
-        //            count++;
-        //            min = w[i] + 4;
-        //        }
-        //    }
-
-        //    return count;
-
-        //}
+        
 
         static void Main(string[] args)
             {
             // string[] res = { "ahffaksfajeeubsne", "jefaa" };
             //Console.WriteLine(CoderByte.MinWindowSubstring(res));
+            int[] arr = { 0, 7, 0, 3, 4, 0, 6, 1 };
+             LeeteCode.MoveZeroes(arr);
             //int res = 2345;
-            Console.WriteLine(CoderByte.beautifulDays(1, 2000000 ,23047885));
+            //Console.WriteLine(CoderByte.beautifulDays(1, 2000000 ,23047885));
             //Console.WriteLine(CoderByte.ContainsNearbyDuplicate(arr,3));
                 //[1, 2, 3, 1, 2, 3]
             //Console.WriteLine(toys(list));
