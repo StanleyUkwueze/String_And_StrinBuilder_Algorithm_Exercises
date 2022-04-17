@@ -16,6 +16,7 @@ namespace Preparation_Interview
             Dictionary<int, List<int>> store = new Dictionary<int, List<int>>();
             int min = times.Select(x => x[0]).Min();
             int max = times.Select(x => x[0]).Max();
+
             foreach (var time in times)
             {
                 if (store.ContainsKey(time[0]))
@@ -27,6 +28,7 @@ namespace Preparation_Interview
                     store.Add(time[0], new List<int>() { time[1] });
                 }
             }
+
             while (store.Count > 0)
             {
                 for (int m = min; m <= max; m++)
@@ -37,7 +39,6 @@ namespace Preparation_Interview
                         store[m].RemoveAt(0);
                         if (store[m].Count == 0) store.Remove(m);
                         m = val - 1;
-
                     }
                 }
                 count++;
@@ -90,7 +91,7 @@ namespace Preparation_Interview
 
         //Giving an array and a size, split the array items into a list of arrays of the given size
         //1.) chunk([1,2,3,4], 2) => [[1, 2][3, 4]]
-        //2.) chunk([1,2,3,4], 3) => [[1, 2, 3][4]
+        //2.) chunk([1,2,3,4], 3) => [[1, 2, 3][4]]
 
         public static List<int>[] ChunkArray(int[] array, int size)
         {
@@ -110,6 +111,33 @@ namespace Preparation_Interview
             }
             return result.ToArray();
         }
+
+        //week ==> 3
+        public static List<int> NumberSplit(int num, int space)
+        {
+            int digitNum = num / space; //3
+            var numAdd = num - (digitNum * space); // 2
+            int count = 0;
+            var diff = space - numAdd; //1
+            var result = new List<int>();
+           // var sum = 0;
+            while (count < space)
+            {
+                if (count >= diff)
+                {
+                    result.Add(digitNum + 1);
+                    count++;
+                }
+                else
+                {
+                    result.Add(digitNum);
+                    count++;
+                }
+            }
+            return result;
+        }
+
+
     }
 
 }

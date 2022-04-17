@@ -247,7 +247,6 @@ namespace Preparation_Interview
                 }
             }
             return arr;
-
         }
 
         //check if a number is a prime number
@@ -472,7 +471,7 @@ namespace Preparation_Interview
 
         }
 
-        //Longest word
+       
 
 
         public static string charcount(string str)
@@ -608,25 +607,75 @@ namespace Preparation_Interview
             }
             return output;
         }
-            static void Main(string[] args)
+
+        //public static string angryProfessor(int k, List<int> a)
+        //{
+        //    int negativeCount = 0;
+        //    int positiveCount = 0;
+        //    var output = "";
+        //    for (int i = 0; i < a.Count; i++)
+        //    {
+        //        if (a[i] <= 0) negativeCount++;
+        //        if (a[i] > 0) positiveCount++;
+        //    }
+        //    if (negativeCount >= k) output = "YES";
+        //    else if (positiveCount < k) output ="NO";
+
+        //    return output;
+        //}
+
+        //public static int toys(List<int> w)
+        //{
+        //    int min = w.Min() + 4;
+        //    //int n = w.Count;
+        //    int count = 1;
+        //    var resultToAdd = new List<int>();
+        //    for (int i = 0; i < w.Count; i++)
+        //    {
+        //        if (w[i] <= min && w[i] >= min-4 )
+        //        {
+        //            //min = w[i];
+        //            // w.Remove(w[i]);
+        //            resultToAdd.Add(w[i]);
+                    
+        //        }
+        //        else
+        //        {
+        //            resultToAdd = new List<int>();
+        //            resultToAdd.Add(w[i]);
+        //            count++;
+        //            min = w[i] + 4;
+        //        }
+        //    }
+
+        //    return count;
+
+        //}
+
+        static void Main(string[] args)
             {
-           // string[] res = { "ahffaksfajeeubsne", "jefaa" };
+            // string[] res = { "ahffaksfajeeubsne", "jefaa" };
             //Console.WriteLine(CoderByte.MinWindowSubstring(res));
-           
-            var str = "ahyjakh";
-            Console.WriteLine(CoderByte.MatchingCharacter(str));
-           // Console.WriteLine(CoderByte.FirstReverse(str));
+            //int res = 2345;
+            Console.WriteLine(CoderByte.beautifulDays(1, 2000000 ,23047885));
+            //Console.WriteLine(CoderByte.ContainsNearbyDuplicate(arr,3));
+                //[1, 2, 3, 1, 2, 3]
+            //Console.WriteLine(toys(list));
+            //Console.WriteLine(angryProfessor(2,list));
+            //var str = "ahyjakh";
+            //Console.WriteLine(CoderByte.MatchingCharacter(str));
+            // Console.WriteLine(CoderByte.FirstReverse(str));
             //Console.WriteLine(CodeWars.reverseWord(str));
             //Console.WriteLine(CodeWars.combineString("aabbbaccc"));
             //Console.WriteLine(CodeWars.print12To24(str));
-           // Console.WriteLine(print24(str)); 
+            // Console.WriteLine(print24(str)); 
             //var str = "?fun&!! time";
             //Console.WriteLine(LongestWord(str));
-           // var eg = "!a_a6?9";
-           // Console.WriteLine(QuestionsMarks(eg));
-           
-         
-           // var str = "(hello (world))";
+            //var eg = "!a_a6???49";
+            //Console.WriteLine(CodeWars.QuestionsMarks(eg));
+
+
+            // var str = "(hello (world))";
             //Console.WriteLine(BracketMatcher(str));
             //var str = "aabbbaccc";
             //Console.WriteLine(Solution(str));

@@ -9,7 +9,41 @@ namespace Preparation_Interview
     public class CodeWars
     {
 
-  
+        //question marks
+
+        public static string QuestionsMarks(string str)
+        {
+            int count = 0;
+            var output = "false";
+            for(int i = 0; i <str.Length; i++)
+            {
+                for(int j = i + 1; j < str.Length; j++)
+                {
+                    int a = Convert.ToInt32(str[i] - '0');
+                    int b = Convert.ToInt32(str[j] - '0');
+                    if(a+b == 10)
+                    {
+                        output = "true";
+                        count = 0;
+                        var res = str.Substring(i, str.Length - j);
+                        for(int k = 0; k <res.Length; k++)
+                        {
+                            if(res[k] == '?')
+                            {
+                                count++;
+                            }
+                        }
+
+                        if(count >= 3)
+                        {
+                            return output;
+                        }
+                    }
+                }
+            }
+
+            return output;
+        }
         //Time Conversion
 
         public static string print12To24(String str)
