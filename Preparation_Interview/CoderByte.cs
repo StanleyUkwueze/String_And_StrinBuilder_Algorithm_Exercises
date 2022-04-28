@@ -90,7 +90,7 @@ namespace Preparation_Interview
             {
                 if (store.ContainsKey(c))
                 {
-                    store[c].Add(index); // add value to a given key
+                    store[c].Add(index); // add the index of the char to keep track of its position
                 }
                 else
                 {
@@ -102,7 +102,7 @@ namespace Preparation_Interview
 
             //create a list containing the lists of min and max indices at which  a character occured
             var doubled = new List<List<int>>(); 
-            //iterate through the store checkin for values with more than one input
+            //iterate through the store checkin for keys with more than one input
             foreach(var s in store)
             {
                 if(s.Value.Count > 1)

@@ -574,15 +574,78 @@ namespace Preparation_Interview
         }
 
        
+//Given an integer array nums, find a contiguous non-empty
+//subarray within the array that has the largest product, and return the product.
+// The test cases are generated so that the answer will fit in a 32-bit integer.
+//A subarray is a contiguous subsequence of the array.
 
-        
+        public static int MaxSubArr(int[] arr)
+        {
+            if (arr.Length == 0) return 0;
+            int output = 0;
+            for(int i = 0; i < arr.Length-1; i++)
+            {
+                if (arr[i] * arr[i + 1] > output) output = arr[i] * arr[i + 1];
+            }
+
+            return output;
+        }
+
+        public static int[] SumTarget(int[] arr, int target)
+        {
+           
+            var indicies = new List<int>();
+            for(int i = 0; i < arr.Length-1; i++)
+            {
+                for(int j = 1 + i; j < arr.Length; j++)
+                {
+                    if(arr[i] + arr[j] == target)
+                    {
+                        indicies.Add(i);
+                        indicies.Add(j);
+                    }
+                }
+            }
+
+            return indicies.ToArray();
+
+        }
+
+
+        public static int[] UpArray(int[] num)
+        {
+            if (num.Length == 0 || num.Any(a => a < 0 || a > 9)) return null;
+
+            for (var i = num.Length - 1; i >= 0; i--)
+            {
+                if (num[i] == 9)
+                {
+                    num[i] = 0;
+                }
+                else
+                {
+                    num[i]++;
+                    return num;
+                }
+            }
+            return new[] { 1 }.Concat(num).ToArray();
+        }
+        public static int FirstNsum(int n)
+        {
+            return n * (n + 1) / 2;
+        }
+
 
         static void Main(string[] args)
             {
+            Console.WriteLine(FirstNsum(5));
+            
+            //var sen = "ahyjakh";
+            //Console.WriteLine(Prep_Ground.MatchingCharacters(sen));
             // string[] res = { "ahffaksfajeeubsne", "jefaa" };
             //Console.WriteLine(CoderByte.MinWindowSubstring(res));
-            int[] arr = { 0, 7, 0, 3, 4, 0, 6, 1 };
-             LeeteCode.MoveZeroes(arr);
+          
+            // LeeteCode.MoveZeroes(arr);
             //int res = 2345;
             //Console.WriteLine(CoderByte.beautifulDays(1, 2000000 ,23047885));
             //Console.WriteLine(CoderByte.ContainsNearbyDuplicate(arr,3));

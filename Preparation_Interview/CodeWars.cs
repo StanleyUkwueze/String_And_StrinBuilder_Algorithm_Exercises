@@ -8,9 +8,26 @@ namespace Preparation_Interview
 {
     public class CodeWars
     {
+        //+1 Array ====> kata 6
+        public static int[] UpArray(int[] num)
+        {
+            var output = new List<int>();
+            num[num.Length - 1] = num[num.Length - 1] + 1;
+            if (num[num.Length - 1] == 10)
+            {
+                num[num.Length - 2] += (num[num.Length - 1] / 10);
+                num[num.Length - 1] = num[num.Length - 1] % 10;
+            }
+            for (int i = 0; i < num.Length; i++)
+            {
+                output.Add(num[i]);
+               
+            }
+            return output.ToArray();
+           
+        }
 
         //question marks
-
         public static string QuestionsMarks(string str)
         {
             int count = 0;
