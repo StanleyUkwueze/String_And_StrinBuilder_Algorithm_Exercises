@@ -635,21 +635,118 @@ namespace Preparation_Interview
             return n * (n + 1) / 2;
         }
 
-
-        static void Main(string[] args)
+        public static int maxs(int num)
+        {
+            int result = 0;
+            while(num > 0)
             {
-            Console.WriteLine(FirstNsum(5));
-            
+                result = result * 10 + num % 10;
+                num  = num/10; 
+            }
+            return result;
+        }
+        public static List<int> prod(int[] arr)
+        {
+            int n = arr.Length;
+            var left = new List<int>();
+            int[] right = new int[n];
+            var result = new List<int>();
+            left.Add(1);
+            right[n-1] = 1;
+        
+            for(int i = 1; i < arr.Length; i++)
+            {
+                left.Add(arr[i - 1] * left[i - 1]);
+            }
+            for(int j = n-2; j >= 0; j--)
+            {
+                right[j]  = arr[j + 1] * right[j + 1];
+            }
+
+            for(int i = 0; i < n; i++)
+            {
+              result.Add(left[i] * right[i]);
+            }
+
+            return result;
+        }
+
+        public static int FindMissing(List<int> list)
+        {
+            int n = list.Count;
+            int d = (list[n - 1] - list[0]) / n;
+            int output = 0;
+            int term = 0;
+            for (int i = 1; i <= list.Count; i++)
+            {
+                term = list[0] + (i - 1) * d;
+                if (!list.Contains(term))
+                {
+                    output = term;
+                    break;
+                }
+            }
+            return output;
+        }
+
+        public static string High(string s)
+        {
+            var str = "abcdefghijklmnopqrstuvwxyz";
+            Dictionary<char, int> store = new Dictionary<char, int>();
+            for (int i = 0; i < str.Length; i++)
+            {
+                store.Add(str[i], i + 1);
+            }
+            var split = s.Split(" ");
+            var output = "";
+            int count = 0;
+            int max = 0;
+            for (int i = 0; i < split.Length; i++)
+            {
+                for (int j = 0; j < split[i].Length; j++)
+                {
+                    foreach (var c in store)
+                    {
+                        if (split[i][j] == c.Key)
+                        {
+                            count += c.Value;
+                            break;
+                        }
+                    }
+                }
+               
+                if (count > max)
+                {
+                    max = count;
+                    output = $"{split[i]} {max}";
+                    
+                }
+                count = 0;
+            }
+            return output;
+        }
+        static void Main(string[] args)
+        {
+           var str = "man i need a taxi up to ubud";
+            Console.WriteLine(High(str));
+            //int[] arr = { 4,12,5,3,1,2,5,3,1,2,4,6};
+            //var res = LeeteCode.GreaterNextelement(arr);
+            //for(int i = arr.Length-1; i >=0; i--)
+            //{
+            //    Console.WriteLine(arr[i]);
+            //    Console.WriteLine("================");
+            //}
+
             //var sen = "ahyjakh";
             //Console.WriteLine(Prep_Ground.MatchingCharacters(sen));
             // string[] res = { "ahffaksfajeeubsne", "jefaa" };
             //Console.WriteLine(CoderByte.MinWindowSubstring(res));
-          
+
             // LeeteCode.MoveZeroes(arr);
             //int res = 2345;
             //Console.WriteLine(CoderByte.beautifulDays(1, 2000000 ,23047885));
             //Console.WriteLine(CoderByte.ContainsNearbyDuplicate(arr,3));
-                //[1, 2, 3, 1, 2, 3]
+            //[1, 2, 3, 1, 2, 3]
             //Console.WriteLine(toys(list));
             //Console.WriteLine(angryProfessor(2,list));
             //var str = "ahyjakh";

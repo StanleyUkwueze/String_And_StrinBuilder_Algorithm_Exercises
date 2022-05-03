@@ -8,6 +8,23 @@ namespace Preparation_Interview
 {
     public class CodeWars
     {
+        public static int FindMissing(List<int> list)
+        {
+            int n = list.Count;
+            int d = (list[n - 1] - list[0]) / n;
+            int output = 0;
+            int term = 0;
+            for (int i = 1; i <= list.Count; i++)
+            {
+                term = list[0] + (i - 1) * d;
+                if (!list.Contains(term))
+                {
+                    output = term;
+                    break;
+                }
+            }
+            return output;
+        }
         //+1 Array ====> kata 6
         public static int[] UpArray(int[] num)
         {

@@ -8,6 +8,37 @@ namespace Preparation_Interview
 {
    public class LeeteCode
     {
+       
+        public static int[] GreaterNextelement(int[] arr)
+        {
+            var res = new List<int>();
+            int count = 0;
+            for(int i =0; i < arr.Length; i++)
+            {
+                for(int j = i + 1; j < arr.Length; j++)
+                {
+                    if(arr[j] > arr[i])
+                    {
+                        res.Add(arr[j]);
+                        count++;
+                        break;
+                    }
+                    if(i == arr.Length - 1)
+                    {
+                        res.Add(-1);
+                        count++;
+                        break;
+                    }
+                }
+                if (count > 0) count = 0;
+                else
+                {
+                    res.Add(-1);
+
+                }
+            }
+            return res.ToArray();
+        }
         private static int beautifulDays(int num)
         {
             var newNum = num.ToString();
