@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 
+
 namespace Preparation_Interview
 {
     public class Program
@@ -252,16 +253,12 @@ namespace Preparation_Interview
         //check if a number is a prime number
         public static bool CheckPrimeNumber(int num)
         {
-            if (num == 2) return true;
-            if (num <= 1) return false;
-
             for (int i = 2; i < num; i++)
             {
                 if (num % i == 0)
                     return false;
-
             }
-            return true;
+            return num >=2;
         }
 
         //return a string of prime numbers
@@ -355,7 +352,6 @@ namespace Preparation_Interview
         public static List<string> Anagrams(string word, List<string> words)
         {
             List<string> list = new List<string>();
-
             for (int i = 0; i < words.Count; i++)
             {
                 if (checkanagram(word, words[i]))
@@ -691,7 +687,8 @@ namespace Preparation_Interview
 
         public static string High(string s)
         {
-            var str = "abcdefghijklmnopqrstuvwxyz";
+           
+           var str = "abcdefghijklmnopqrstuvwxyz";
             Dictionary<char, int> store = new Dictionary<char, int>();
             for (int i = 0; i < str.Length; i++)
             {
@@ -713,30 +710,132 @@ namespace Preparation_Interview
                             break;
                         }
                     }
-                }
-               
+                }            
                 if (count > max)
                 {
                     max = count;
-                    output = $"{split[i]} {max}";
-                    
+                    output = $"{split[i]} {max}";                  
                 }
                 count = 0;
             }
             return output;
         }
+
+        public static int squares(int a, int b)
+        {
+            int counter = 0;
+
+            for (int i = a; i <= b; i++)
+            {
+                if (Math.Sqrt(i) == (int)Math.Sqrt(i)) counter++;
+            }
+            return counter;
+        }
+
+        public static string isValid(string s)
+        {
+            var res = "";
+            var vals = new List<int>();
+            Dictionary<char, int> store = new Dictionary<char, int>();
+            foreach (var c in s)
+            {
+                if (store.ContainsKey(c)) store[c]++;
+                else store.Add(c, 1);
+            }
+
+            foreach (var v in store)
+            {
+                vals.Add(v.Value);
+            }
+            var min = vals.Min();
+            var max = vals.Max();
+            
+            if (max - min == 1 || min == max) res = "YES";
+            else res = "NO";
+
+
+            return res;
+
+        }
+
+        public static int fib(int n)
+        {
+            if (n == 1) return 0;
+            if (n == 2) return 1;
+
+            return fib(n - 1) + fib(n - 2);
+        }
+
+        public static long CountOddPentaFib(long n)
+        {
+            // your code
+            long count = 1, f0 = 0, f1 = 1, f2 = 1, f3 = 2, f4 = 4;
+
+            for (long i = 5; i <= n; i++)
+            {
+                long sum = f0 + f1 + f2 + f3 + f4;
+                if (sum % 2 != 0) count++;
+
+                f0 = f1;
+                f1 = f2;
+                f2 = f3;
+                f3 = f4;
+                f4 = sum;
+            }
+            return count;
+        }
+
+     public static string DecodeStr(string str)
+        {
+            var stackChar = new Stack<char>();
+            var stackNum = new Stack<int>();
+            int counter = 0;
+            for(int i =0; i <str.Length; i++)
+            {
+                if (Char.IsDigit(str[i]))
+                {
+                    counter = (int)(str[i] - '0');
+                }
+                else if(str[i] == ']')
+                {
+                    int repeat = stackNum.Pop();
+                    var tem = "";
+                    while(stackChar.Peek() != '[')
+                    {
+                        tem = stackChar.Pop() + tem;
+                    }
+                    stackChar.Pop();
+
+                    for (int j = 0; j < repeat; j++)
+                    {
+                        for(int k = 0; k < tem.Length; k++)
+                        {
+                            stackChar.Push(tem[k]);
+                        }
+                    }
+                }
+                else
+                {
+                    if(counter != 0)
+                    {
+                        stackNum.Push(counter);
+                    }
+                    counter = 0;
+                    stackChar.Push(str[i]);
+                }
+            }
+            var result = "";
+            while(stackChar.Count != 0)
+            {
+                result = stackChar.Pop() + result;
+            }
+            return result;
+        }
+
         static void Main(string[] args)
         {
-           var str = "man i need a taxi up to ubud";
-            Console.WriteLine(High(str));
-            //int[] arr = { 4,12,5,3,1,2,5,3,1,2,4,6};
-            //var res = LeeteCode.GreaterNextelement(arr);
-            //for(int i = arr.Length-1; i >=0; i--)
-            //{
-            //    Console.WriteLine(arr[i]);
-            //    Console.WriteLine("================");
-            //}
-
+            var s = "3[a]2[bc]";
+            Console.WriteLine(DecodeStr(s));
             //var sen = "ahyjakh";
             //Console.WriteLine(Prep_Ground.MatchingCharacters(sen));
             // string[] res = { "ahffaksfajeeubsne", "jefaa" };

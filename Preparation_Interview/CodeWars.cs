@@ -271,62 +271,70 @@ namespace Preparation_Interview
             return sum;
         }
 
-        //page count
 
-       public static int solve(int totalPagesInBook, int targetPageNumber)
+        private static long SumDigit(long num)
         {
-            var minimumPagesToTurn = 0;
-
-            if (targetPageNumber == 1 || targetPageNumber == totalPagesInBook)
-                return minimumPagesToTurn;
-
-            if (totalPagesInBook % 2 != 0 && targetPageNumber == totalPagesInBook - 1)
-                return minimumPagesToTurn;
-
-
-            if (totalPagesInBook % 2 == 0)
+            long rem = 0;
+            long sum = 0;
+            while (num > 0)
             {
-                //even number of total pages e.g. 10
-                if (targetPageNumber <= totalPagesInBook / 2)
-                {
-                    //start from front
-                    minimumPagesToTurn = targetPageNumber / 2;
-                }
-                else
-                {
-                    //start from end
-                    double d = ((double)(totalPagesInBook - targetPageNumber)) / 2;
-                    minimumPagesToTurn = (int)Math.Ceiling(d);
-                }
+                rem = num % 10;
+                sum += rem;
+                num = num / 10;
             }
-            else
-            {
-                //total number of pages are odd
-
-                //special handling for exactly middle number when total number of pages are like 3,7,11,15...and so on
-
-                if (targetPageNumber == (totalPagesInBook / 2) + 1 && totalPagesInBook % 4 == 3)
-                {
-                    //this requires special handling as this median will be close to the end instead
-                    minimumPagesToTurn = (totalPagesInBook - targetPageNumber) / 2;
-                }
-                else
-                {
-                    if (targetPageNumber <= ((totalPagesInBook / 2) + 1))
-                    {
-                        //start from front
-                        minimumPagesToTurn = targetPageNumber / 2;
-                    }
-                    else
-                    {
-                        //start from end
-                        minimumPagesToTurn = (totalPagesInBook - targetPageNumber) / 2;
-                    }
-                }
-
-            }
-            return minimumPagesToTurn;
+            return sum;
         }
+        public static long SumDigNthTerm(long initval, long[] patternl, int nthterm)
+        {
+            int count = 0;
+            for (int i = 0; i < nthterm - 1; i++)
+            {
+                initval += patternl[count++];
+                if (count == patternl.Length)
+                {
+                    count = 0;
+                }
+            }
+            return SumDigit(initval);
+        }
+
+        private static bool CheckPrime(long num)
+        {
+            for (int i = 2; i < num / 2; i++)
+            {
+                if (num % i == 0)
+                    return false;
+            }
+            return num >= 2;
+        }
+        public static long[] PrimeBefAft(long num)
+        {
+            // your code 
+            var primes = new long[] { num, num };
+            while (!CheckPrime(--primes[0])) ;
+            while (!CheckPrime(++primes[1])) ;
+            return primes;
+        }
+
+        public static int[] TakeWhile(int[] arr, Func<int, bool> pred)
+        {
+            var list = new List<int>();
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (pred(arr[i]))
+                {
+                    list.Add(arr[i]);
+                }
+                else
+                {
+                    break;
+                }
+            }
+            return list.ToArray();
+        }
+
+        //page count
+       
 
     }
    
